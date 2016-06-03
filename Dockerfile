@@ -62,6 +62,10 @@ ADD setenv.sh /home/guest/setenv.sh
 RUN chown guest:guest setenv.sh
 RUN echo . ./setenv.sh >> .bashrc
 
+#Add notebooks
+ADD notebooks /home/guest/notebooks
+RUN chown -R guest:guest notebooks
+
 #Install Cassandra
 ADD datastax.repo /etc/yum.repos.d/datastax.repo
 RUN yum install -y dsc21-2.1.7-1  cassandra2.1.7-1 cassandra21-tools-2.1.7-1
