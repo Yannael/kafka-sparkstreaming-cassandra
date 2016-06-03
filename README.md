@@ -11,6 +11,17 @@ It additionnally installs
 * Anaconda 2.4 Python distribution 
 * Jupyter notebook for Python 
 
+
+# Quick start-up guide
+
+Run container using [DockerHub image](https://hub.docker.com/r/yannael/kafka-sparkstreaming-cassandra)
+
+ docker run -p 4040:4040 -p 8888:8888 -p 23:22 -ti --privileged yannael/kafka-sparkstreaming-cassandra
+
+See following video for usage demo.
+
+Note that any changes you make in the notebook will be lost once you exit de container. In order to keep the changes, it is necessary put your notebooks in a folder on your host, that you share with the container. See below or in Docker documentation for how to do this.  
+
 # Container configuration details
 
 The container is based on CentOS 6 Linux distribution. The main steps of the building process are
@@ -18,6 +29,7 @@ The container is based on CentOS 6 Linux distribution. The main steps of the bui
 * Install some common Linux tools (wget, unzip, tar, ssh tools, ...), and Java (1.8)
 * Create a guest user (UID important for sharing folders with host!, see below), and install Spark and sbt, Kafka, Anaconda and Jupyter notbooks for the guest user
 * Go back to root user, and install startup script (for starting SSH and Cassandra services), sentenv.sh script to set up environment variables (JAVA, Kafka, Spark, ...), spark-default.conf, and Cassandra 
+
 
 ## User UID
 
