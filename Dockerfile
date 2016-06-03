@@ -62,6 +62,10 @@ ADD setenv.sh /home/guest/setenv.sh
 RUN chown guest:guest setenv.sh
 RUN echo . ./setenv.sh >> .bashrc
 
+#Init Cassandra 
+ADD init_cassandra.cql /home/guest/init_cassandra.cql
+RUN chown guest:guest init_cassandra.cql
+
 #Add notebooks
 ADD notebooks /home/guest/notebooks
 RUN chown -R guest:guest notebooks
