@@ -49,20 +49,12 @@ Once run, you are logged in as root in the container. Run the startup_script.sh 
 startup_script.sh
 ```
 
-
 ### Connect, create Cassandra table, open notebook and start streaming
 
 Connect as user 'guest' and go to 'host' folder (shared with the host)
 
 ```
 su guest
-cd host
-```
-
-Create Cassandra 'test_time' table
-
-```
-cqlsh -f init_cassandra.cql
 ```
 
 Start Jupyter notebook
