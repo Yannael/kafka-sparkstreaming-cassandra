@@ -22,7 +22,7 @@ docker run -p 4040:4040 -p 8888:8888 -p 23:22 -ti --privileged yannael/kafka-spa
 
 See following video for usage demo.
 <br>
-<a href="https://www.youtube.com/edit?o=U&video_id=XxCFo7BzNQ8" target="_blank"><img src="https://www.youtube.com/edit?o=U&video_id=XxCFo7BzNQ8" 
+<a href="https://www.youtube.com/watch?v=XxCFo7BzNQ8" target="_blank"><img src="http://img.youtube.com/vi/XxCFo7BzNQ8/0.jpg" 
 alt="Demo" width="480" height="360" border="10" align="center"/></a>
 
 Note that any changes you make in the notebook will be lost once you exit de container. In order to keep the changes, it is necessary put your notebooks in a folder on your host, that you share with the container, using for example
@@ -41,9 +41,11 @@ Note:
 
 SSH allows to get a onnection to the container
 
- ssh -p 23 guest@containerIP
+```
+ssh -p 23 guest@containerIP
+```
 
- where 'containerIP' is the IP of th container (127.0.0.1 on Linux). Password is 'guest'.
+where 'containerIP' is the IP of th container (127.0.0.1 on Linux). Password is 'guest'.
 
 ### Start services
 
