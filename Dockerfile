@@ -22,34 +22,30 @@ WORKDIR $HOME
 USER guest
 
 #Install Spark
-#Precompiled with : mvn -Pyarn -Phadoop-2.6 -Dhadoop.version=2.6.0 -Dyarn.version=2.6.0 -DskipTests -Dscala-2.11 -Phive -Phive-thriftserver clean package
-RUN wget http://litpc45.ulb.ac.be/spark-1.6.1-bin-hadoop2.6-scala2.11.tgz
-RUN tar xvzf spark-1.6.1-bin-hadoop2.6-scala2.11.tgz
+#Spark 2.0.0, precompiled with : mvn -Pyarn -Phadoop-2.6 -Dhadoop.version=2.6.0 -Dyarn.version=2.6.0 -DskipTests -Dscala-2.11 -Phive -Phive-thriftserver clean package
+RUN wget http://litpc45.ulb.ac.be/spark-2.0.0_Hadoop-2.6_Scala-2.11.tgz
+RUN tar xvzf spark-2.0.0_Hadoop-2.6_Scala-2.11.tgz
 
 ENV SPARK_HOME $HOME/spark
 
 #Install Kafka
-RUN wget http://apache.belnet.be/kafka/0.9.0.0/kafka_2.11-0.9.0.0.tgz
-RUN tar xvzf kafka_2.11-0.9.0.0.tgz
-RUN mv kafka_2.11-0.9.0.0 kafka
+RUN wget http://apache.belnet.be/kafka/0.10.0.0/kafka_2.11-0.10.0.0.tgz
+RUN tar xvzf kafka_2.11-0.10.0.0.tgz
+RUN mv kafka_2.11-0.10.0.0 kafka
 
 ENV PATH $HOME/spark/bin:$HOME/spark/sbin:$HOME/kafka/bin:$PATH
 
 #Install Anaconda Python distribution
-RUN wget http://repo.continuum.io/archive/Anaconda2-4.0.0-Linux-x86_64.sh
-RUN bash Anaconda2-4.0.0-Linux-x86_64.sh -b
+RUN wget http://repo.continuum.io/archive/Anaconda2-4.1.1-Linux-x86_64.sh
+RUN bash Anaconda2-4.1.1-Linux-x86_64.sh -b
 ENV PATH $HOME/anaconda2/bin:$PATH
+RUN conda install python=2.7.10 -y
 
 #Install Jupyer notebook + Toree Scala kernel
 RUN conda install jupyter -y 
 
 #Install Kafka Python module
 RUN pip install kafka-python
-
-#Install sbt
-RUN wget https://dl.bintray.com/sbt/native-packages/sbt/0.13.11/sbt-0.13.11.tgz
-RUN tar xvzf sbt-0.13.11.tgz
-ENV PATH $HOME/sbt/bin:$PATH 
 
 USER root
 
@@ -72,6 +68,6 @@ RUN chown -R guest:guest notebooks
 
 #Install Cassandra
 ADD datastax.repo /etc/yum.repos.d/datastax.repo
-RUN yum install -y dsc21-2.1.7-1  cassandra2.1.7-1 cassandra21-tools-2.1.7-1
+RUN yum install -y datastax-ddc
 RUN echo "/usr/lib/python2.7/site-packages" |tee /home/guest/anaconda2/lib/python2.7/site-packages/cqlshlib.pth
 

@@ -2,13 +2,13 @@
 
 This Dockerfile sets up a complete streaming environment for experimenting with Kafka, Spark streaming (PySpark), and Cassandra. It installs
 
-* Kafka 0.9.0.0
-* Spark 1.6.1 for Scala 2.11
-* Cassandra 2.1.7
+* Kafka 0.10.0.0
+* Spark 2.0.0 for Scala 2.11
+* Cassandra 3.7
 
 It additionnally installs
 
-* Anaconda 2.4 Python distribution 
+* Anaconda distribution 4.1.1 for Python 2.7.10
 * Jupyter notebook for Python 
 
 
