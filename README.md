@@ -102,7 +102,7 @@ The container is based on CentOS 6 Linux distribution. The main steps of the bui
 
 In the Dockerfile, the line
 
-````
+```
 RUN useradd guest -u 1000
 ```
 
