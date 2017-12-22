@@ -25,6 +25,7 @@ USER guest
 RUN wget https://d3kbcqa49mib13.cloudfront.net/spark-2.1.1-bin-hadoop2.7.tgz
 RUN tar xvzf spark-2.1.1-bin-hadoop2.7.tgz
 RUN mv spark-2.1.1-bin-hadoop2.7 spark
+RUN rm -f spark-2.1.1-bin-hadoop2.7.tgz
 
 ENV SPARK_HOME $HOME/spark
 
@@ -32,6 +33,7 @@ ENV SPARK_HOME $HOME/spark
 RUN wget http://mirrors.dotsrc.org/apache/kafka/0.10.2.1/kafka_2.11-0.10.2.1.tgz
 RUN tar xvzf kafka_2.11-0.10.2.1.tgz
 RUN mv kafka_2.11-0.10.2.1 kafka
+RUN rm -f kafka_2.11-0.10.2.1.tgz
 
 ENV PATH $HOME/spark/bin:$HOME/spark/sbin:$HOME/kafka/bin:$PATH
 
@@ -40,6 +42,7 @@ RUN wget https://repo.continuum.io/archive/Anaconda2-4.4.0-Linux-x86_64.sh
 RUN bash Anaconda2-4.4.0-Linux-x86_64.sh -b
 ENV PATH $HOME/anaconda2/bin:$PATH
 RUN conda install python=2.7.10 -y
+RUN rm -f Anaconda2-4.4.0-Linux-x86_64.sh
 
 #Install Jupyer notebook + Toree Scala kernel
 RUN conda install jupyter -y 
