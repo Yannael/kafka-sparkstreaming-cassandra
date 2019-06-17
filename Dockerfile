@@ -22,16 +22,17 @@ WORKDIR $HOME
 USER guest
 
 #Install Spark (Spark 2.1.1 - 02/05/2017, prebuilt for Hadoop 2.7 or higher)
-RUN wget https://d3kbcqa49mib13.cloudfront.net/spark-2.1.1-bin-hadoop2.7.tgz
-RUN tar xvzf spark-2.1.1-bin-hadoop2.7.tgz
-RUN mv spark-2.1.1-bin-hadoop2.7 spark
+RUN wget https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz
+RUN tar xvzf spark-2.2.0-bin-hadoop2.7.tgz
+RUN mv spark-2.2.0-bin-hadoop2.7 spark
 
 ENV SPARK_HOME $HOME/spark
 
 #Install Kafka
-RUN wget http://mirrors.dotsrc.org/apache/kafka/0.10.2.1/kafka_2.11-0.10.2.1.tgz
-RUN tar xvzf kafka_2.11-0.10.2.1.tgz
-RUN mv kafka_2.11-0.10.2.1 kafka
+#RUN wget http://mirrors.dotsrc.org/apache/kafka/0.10.2.1/kafka_2.11-0.10.2.1.tgz
+RUN wget http://mirrors.dotsrc.org/apache/kafka/2.2.1/kafka_2.12-2.2.1.tgz
+RUN tar xvzf kafka_2.12-2.2.1.tgz
+RUN mv kafka_2.12-2.2.1 kafka
 
 ENV PATH $HOME/spark/bin:$HOME/spark/sbin:$HOME/kafka/bin:$PATH
 
@@ -39,13 +40,13 @@ ENV PATH $HOME/spark/bin:$HOME/spark/sbin:$HOME/kafka/bin:$PATH
 RUN wget https://repo.continuum.io/archive/Anaconda2-4.4.0-Linux-x86_64.sh
 RUN bash Anaconda2-4.4.0-Linux-x86_64.sh -b
 ENV PATH $HOME/anaconda2/bin:$PATH
-RUN conda install python=2.7.10 -y
+RUN conda install python=2.7 -y
 
 #Install Jupyer notebook + Toree Scala kernel
 RUN conda install jupyter -y 
 
 #Install Kafka Python module
-RUN pip install kafka-python
+RUN conda install -c conda-forge kafka-python -y
 
 USER root
 
@@ -70,6 +71,3 @@ RUN chown guest:guest init_cassandra.cql
 #Add notebooks
 ADD notebooks /home/guest/notebooks
 RUN chown -R guest:guest notebooks
-
-
-
